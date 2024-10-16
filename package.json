@@ -1,0 +1,14 @@
+{
+  "name": "prjct",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ws": "^8.18.0"
+  }
+}
