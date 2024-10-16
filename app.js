@@ -3,6 +3,20 @@ const WebSocket = require("ws");
 const wsServer = new WebSocket.Server({port: 9000});
 console.log(wsServer.address());
 
+const os = require('os');
+const networkInterfaces = os.networkInterfaces();
+const localIPs = [];
+
+for (const interfaceName of Object.keys(networkInterfaces)) {
+   for (const network of networkInterfaces[interfaceName]) {
+      if (network.family === 'IPv4' && !network.internal) {
+         localIPs.push(network.address);
+      }
+   }
+}
+
+console.log('Local IP addresses:', localIPs);
+
 wsServer.on('connection', onConnect);
 
 function onConnect(wsClient)
@@ -23,7 +37,7 @@ function onConnect(wsClient)
                   case "PING":
                     setTimeout(function() {
                       wsClient.send("PONG");
-                    }, 5000);
+                    }, 2500);
                     break;
                   default:
                     console.log('Неизвестная команда');
