@@ -1,5 +1,18 @@
 const WebSocket = require("ws");
 
+const serialPort = require("serialport");
+const readLine = require("@serialport/parser-readline");
+const port = new serialPort("COM4", {baudRate: 4800});
+const parser = new readLine();
+
+port.pipe(parser);
+
+port.on('readable', function () {
+  const data = port.read();
+  console.log('Data:', data);
+  port.write(data);
+});
+
 const wsServer = new WebSocket.Server({port: 9000});
 console.log(wsServer.address());
 
