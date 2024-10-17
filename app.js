@@ -38,9 +38,11 @@ function onConnect(wsClient)
     wsClient.on('message', 
         function(message)
         {
+            console.log("Новое сообщение от пользователя");
+            console.log(message.toString());
             /* обработчяик сообщений от клиента */
             try {
-              wsClient.send(message.data);
+              wsClient.send(message.toString());
 /*
                 // сообщение пришло текстом, нужно конвертировать в JSON-формат
                 const jsonMessage = JSON.parse(message);
