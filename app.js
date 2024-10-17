@@ -40,7 +40,7 @@ function onConnect(wsClient)
         {
             /* обработчяик сообщений от клиента */
             try {
-              wsClient.send(message);
+              wsClient.send(message.data);
 /*
                 // сообщение пришло текстом, нужно конвертировать в JSON-формат
                 const jsonMessage = JSON.parse(message);
@@ -69,5 +69,6 @@ function onConnect(wsClient)
             console.log('Пользователь отключился');
         }
     );
+
     
 }
