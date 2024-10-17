@@ -34,12 +34,14 @@ wsServer.on('connection', onConnect);
 function onConnect(wsClient)
 {
     console.log('Новый пользователь')
-    wsClient.send('Привет');
+   // wsClient.send('Привет');
     wsClient.on('message', 
         function(message)
         {
             /* обработчяик сообщений от клиента */
             try {
+              wsClient.send(message);
+/*
                 // сообщение пришло текстом, нужно конвертировать в JSON-формат
                 const jsonMessage = JSON.parse(message);
                 switch (jsonMessage.action) {
@@ -55,6 +57,7 @@ function onConnect(wsClient)
                     console.log('Неизвестная команда');
                     break;
                 }
+*/
               } catch (error) {
                 console.log("Ошибка", error);
               }
